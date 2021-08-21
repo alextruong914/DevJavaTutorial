@@ -1,8 +1,11 @@
+package DevJavaTutorial.src;
+
 import java.io.IOException;
 // Import the matcher
 import java.util.regex.Matcher;
 // Import the pattern
 import java.util.regex.Pattern;
+
 
 
 // A pattern is used in a matcher
@@ -75,6 +78,43 @@ public class Regex {
     // . - wildcard, will match anything
     // * - will keep matching, e.g. a* will match aaaaaaaaaa, .* will match any string
 
+    // Create an article from the first article - we can use Regex today
+    // Next time we will use Jsoup!
+
+    
+
+    // Either one of these is ok:
+    //Article a1 = new Article(response.body());
+    // OR (comment out one)
+    Article a2 = new Article("https://news.ycombinator.com/");
+
+    //System.out.println(a1);
+    // OR
+    System.out.println(a2);
+
+    /*
+    Contents:
+
+    Heading: SoundStream: An End-to-End Neural Audio Codec 
+    Link: http://ai.googleblog.com/2021/08/soundstream-end-to-end-neural-audio.html
+    Date Posted: 2021-08-15T02:42:07
+    Content: Audio codecs are used to efficiently compress audio to reduce either storage requirements or network bandwidth. Ideally, audio codecs should be transparent to the end user, so that the decoded audio is perceptually indistinguishable from the original and the encoding/decoding process does not introduce perceivable latency.
+    Image: https://1.bp.blogspot.com/-QziOS4QToRI/YRRARL7JKKI/AAAAAAAAIBM/Sl6W1OPsf0gDR6mn1mDLqaOo7aGhCk8YgCLcBGAsYHQ/s16000/image2.png
+    */
+    
+    // Homework: (or next lession)
+    // Extending this to extract all articles, into this array:
+    // 
+    // Article[] articles = // a list of articles
+    // For each article in articles, print the article out
+    Article[] articles = new Article[3];
+    articles[0] = new Article("https://www.cell.com/patterns/fulltext/S2666-3899(21)00061-1");
+    articles[1] = new Article("https://devblogs.microsoft.com/dotnet/performance-improvements-in-net-6/");
+    articles[2] = new Article("https://www.theguardian.com/lifeandstyle/2010/aug/28/29-years-solitary-confinement-robert-king");
+    for (Article x : articles) {
+    	System.out.println(x);
+    }
+    
     
     }
 }
