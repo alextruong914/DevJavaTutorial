@@ -8,6 +8,7 @@ import java.net.http.HttpResponse;
 
 public class Article {
 	// Here we can create the object with all the fields for an article!
+	// now an article just contains the data and some very basic operations that an article can do
 
     // Heading
 	public String heading;
@@ -24,56 +25,19 @@ public class Article {
     public String image;
     // A constructor for the class
     
-    private void extractHeading() {
-        System.out.println("Not Implemented");
-    }
     
-    private void extractLink() {
-        System.out.println("Not Implemented");
-    }
-
-    private void extractTimePosted() {
-        System.out.println("Not Implemented");
-    }
-    
-    private void extractContent() {
-        System.out.println("Not Implemented");
-    }
-    
-    private void extractImage() {
-        /* Can be the first image on the page */
-        System.out.println("Not Implemented");
-    }
-
-    private String url;
-
     @Override
     public String toString() {
-        return "Heading: " + this.heading;
+        return "Heading: " + this.heading + "\nLink: " + link + "\nTime Posted: " + timePosted + "\nContent: " + content + "\nImage: " + image;
     }
 
-    public Article(String url) throws IOException, InterruptedException {
-        // This is a constructor
-        // Handle either the input string or go get a url
-    	this.url = url;
 
-        // Get the url and resolve the HTML
-    	HttpClient myClient = HttpClient.newHttpClient();
-
-        HttpRequest myRequest = HttpRequest.newBuilder()
-            .uri(URI.create(url))
-            .GET()
-            .build();
-
-        HttpResponse<String> response = myClient.send(myRequest, HttpResponse.BodyHandlers.ofString());
-
-        // System.out.println(response.body());
-
-        extractHeading();
-        extractLink();
-        extractTimePosted();
-        extractContent();
-        extractImage();
+    public Article(String heading, String link, String timePosted, String content, String image) throws IOException, InterruptedException {
+    	this.heading = heading;
+    	this.link = link;
+    	this.timePosted = timePosted;
+    	this.content = content;
+    	this.image = image;
     }
-    
+
 }
