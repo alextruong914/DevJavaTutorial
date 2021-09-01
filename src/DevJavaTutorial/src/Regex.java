@@ -8,6 +8,7 @@ import java.util.regex.Pattern;
 
 
 
+
 // A pattern is used in a matcher
 
 
@@ -88,7 +89,7 @@ public class Regex {
     // OR (comment out one)
     ArticleParser ap = new ArticleParser("https://news.ycombinator.com/");
     Article a2 = ap.parse(0);
-
+    
     //System.out.println(a1);
     // OR
     System.out.println(a2);
@@ -108,14 +109,6 @@ public class Regex {
     // 
     // Article[] articles = // a list of articles
     // For each article in articles, print the article out
-    Article[] articles = new Article[3];
-//    articles[0] = new Article("https://www.cell.com/patterns/fulltext/S2666-3899(21)00061-1");
-//    articles[1] = new Article("https://devblogs.microsoft.com/dotnet/performance-improvements-in-net-6/");
-//    articles[2] = new Article("https://www.theguardian.com/lifeandstyle/2010/aug/28/29-years-solitary-confinement-robert-king");
-    for (Article x : articles) {
-    	System.out.println(x);
-    }
-    
-    
+//    
     }
 }

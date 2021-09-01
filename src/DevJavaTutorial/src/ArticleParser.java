@@ -86,9 +86,9 @@ public class ArticleParser {
 
         this.response = myClient.send(myRequest, HttpResponse.BodyHandlers.ofString());
         String str4 = this.response.body();
-
-//        String pattern4 = "<meta name=\\\"description\\\" content=\\\"([^\\\"]*)\\\">";
-        String pattern4 = "<meta property=\\\"og:description\\\" content=\\\"([^\\\"]*)\\\" \\/>";
+        // System.out.println(str4);
+        // String pattern4 = "<meta name=\\\"description\\\" content=\\\"([^\\\"]*)\\\">";
+        String pattern4 = "<meta [^=]*=\"(?:og:){0,1}description\" content=\"([^\"]*)\" ?\\/>";
         Pattern p4 = Pattern.compile(pattern4);
         Matcher m4 = p4.matcher(str4);
         boolean b4 = m4.find();
@@ -113,7 +113,8 @@ public class ArticleParser {
 
         this.response = myClient.send(myRequest, HttpResponse.BodyHandlers.ofString());
         String str5 = this.response.body();
-        String pattern5 = "<meta property=\\\"og:image\\\" content=\\\"([^\\\"]*)\\\" \\/>";
+        System.out.println(str5);
+        String pattern5 = "\\\"([^\\\"]*(?:gif|png|jpg|webp))\\\"";
         Pattern p5 = Pattern.compile(pattern5);
         Matcher m5 = p5.matcher(str5);
         boolean b5 = m5.find();

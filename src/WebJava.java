@@ -1,6 +1,10 @@
 import java.io.IOException;
 import java.net.URI;
 import java.net.http.*;
+import java.util.ArrayList;
+import java.util.regex.Matcher;
+// Import the pattern
+import java.util.regex.Pattern;
 
 public class WebJava {
     public static void main(String[] args) throws IOException, InterruptedException {
@@ -20,9 +24,24 @@ public class WebJava {
 
         
         // 3. Print this data to the console 
-        System.out.println(response.statusCode());
-        System.out.println(response.body());
+        // System.out.println(response.statusCode());
+        // System.out.println(response.body());
 
-        // System.out.println("Hello, World!"); 
+        // System.out.println("Hello, World!");
+        // 4. Print all article on the web
+        ArrayList<String> result = new ArrayList<String>();
+
+        String regex = "(https?|ftp|file)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]";
+
+        Pattern patternWeb = Pattern.compile(regex);
+        Matcher mWeb = patternWeb.matcher(response.body());
+        while (mWeb.find())
+        {
+            result.add(mWeb.group());
+        }
+
+        for (String i:result){
+            System.out.println(i);
+        }
     }
 }
