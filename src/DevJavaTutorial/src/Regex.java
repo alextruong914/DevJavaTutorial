@@ -6,16 +6,16 @@ import java.util.regex.Matcher;
 // Import the pattern
 import java.util.regex.Pattern;
 
-
+import java.util.ArrayList;
 
 
 // A pattern is used in a matcher
 
 
 public class Regex {
-    public static void main(String[] args) throws IOException, InterruptedException {
 
-    // Take a string "This sentence contains some letters, numbers (1234) and symbols ()"
+    public static void old() throws IOException, InterruptedException {
+            // Take a string "This sentence contains some letters, numbers (1234) and symbols ()"
     // Using Pattern.compile, create a pattern to search with
 
     // Do it here:
@@ -51,7 +51,7 @@ public class Regex {
         
     // Task 4: Extract the URL: https://github.com/HackerNews/API\">API</a>
         String str1 = "<a href=\"https://github.com/HackerNews/API\">API</a>";
-        String pattern1 = "((http:\\/\\/|https:\\/\\/)?(www.)?(([a-zA-Z0-9-]){2,}\\.){1,4}([a-zA-Z]){2,6}(\\/([a-zA-Z-_\\/\\.0-9#:?=&;,]*)?)?)";
+        String pattern1 = "(https?|ftp|file)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]";
         
         Pattern p1 = Pattern.compile(pattern1);
         Matcher m1 = p1.matcher(str1);
@@ -83,16 +83,22 @@ public class Regex {
     // Next time we will use Jsoup!
 
 
+    }
+    public static void main(String[] args) throws IOException, InterruptedException {
+
+
 
     // Either one of these is ok:
     //Article a1 = new Article(response.body());
     // OR (comment out one)
     ArticleParser ap = new ArticleParser("https://news.ycombinator.com/");
-    Article a2 = ap.parse(0);
-    
-    //System.out.println(a1);
-    // OR
-    System.out.println(a2);
+    ArrayList<Article> articles = ap.parse();
+    for (Article a:articles){
+        System.out.println("--------------=------------");
+        System.out.println(a);
+    }
+
+    //System.out.println(articles);
 
     /*
     Contents:
@@ -109,6 +115,7 @@ public class Regex {
     // 
     // Article[] articles = // a list of articles
     // For each article in articles, print the article out
-//    
+    // 
+
     }
 }
