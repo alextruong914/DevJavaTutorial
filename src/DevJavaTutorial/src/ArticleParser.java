@@ -1,6 +1,7 @@
 package DevJavaTutorial.src;
 
 import java.io.IOException;
+import java.net.ConnectException;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
@@ -73,7 +74,9 @@ public class ArticleParser {
     private String extractContent(String link) throws IOException, InterruptedException {
     	// Do this for homework
     	// Note, this one is harder because it will require you to do another HTTP get on this.link
-    	
+    	if (link == null) {
+            throw new IOException("Link must not be null");
+        }
     	/*
     	 * HttpClient myClient = HttpClient.newHttpClient();
 
@@ -84,22 +87,29 @@ public class ArticleParser {
 
         this.response = myClient.send(myRequest, HttpResponse.BodyHandlers.ofString());
     	 */
-    	HttpClient myClient = HttpClient.newHttpClient();
-
-        HttpRequest myRequest = HttpRequest.newBuilder()
-            .uri(URI.create(link))
-            .GET()
-            .build();
-
-        this.response = myClient.send(myRequest, HttpResponse.BodyHandlers.ofString());
-        String str4 = this.response.body();
-        // System.out.println(str4);
-        // String pattern4 = "<meta name=\\\"description\;\\" content=\\\"([^\\\"]*)\\\">";
-        String pattern4 = "<meta [^=]*=\"(?:og:){0,1}description\" content=\"([^\"]*)\" ?\\/>";
-        Pattern p4 = Pattern.compile(pattern4);
-        Matcher m4 = p4.matcher(str4);
-        boolean b4 = m4.find();
-        return m4.group(1);
+    	try {
+            HttpClient myClient = HttpClient.newHttpClient();
+            HttpRequest myRequest = HttpRequest.newBuilder()
+                .uri(URI.create(link))
+                .GET()
+                .build();
+            this.response = myClient.send(myRequest, HttpResponse.BodyHandlers.ofString());
+            String str4 = this.response.body();
+            // System.out.println(str4);
+            // String pattern4 = "<meta name=\\\"description\;\\" content=\\\"([^\\\"]*)\\\">";
+            String pattern4 = "<meta [^=]*=\"(?:og:){0,1}description\" content=\"([^\"]*)\" ?\\/>";
+            Pattern p4 = Pattern.compile(pattern4);
+            Matcher m4 = p4.matcher(str4);
+            boolean b4 = m4.find();
+            if (b4==false) {
+                return null;
+            } else
+            return m4.group(1);
+        }
+        catch (ConnectException e) {
+            System.out.println("Unable to resolve link: " + link);
+            return null;
+        }
  
     }
     
