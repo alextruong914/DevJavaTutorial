@@ -10,7 +10,25 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.ArrayList;
 
-public class ArticleParser {
+//Change this so that we implement the Parser interface
+
+/*
+public class OperateBMW760i implements OperateCar {
+
+    // the OperateCar method signatures, with implementation --
+    // for example:
+    public int signalTurn(Direction direction, boolean signalOn) {
+       // code to turn BMW's LEFT turn indicator lights on
+       // code to turn BMW's LEFT turn indicator lights off
+       // code to turn BMW's RIGHT turn indicator lights on
+       // code to turn BMW's RIGHT turn indicator lights off
+    }
+
+    // other members, as needed -- for example, helper classes not 
+    // visible to clients of the interface
+}
+*/
+public class RegexArticleParser implements Parser {
 	private HttpResponse<String> response;
 	
 	private ArrayList<String> extractHeadings() {
@@ -138,7 +156,7 @@ public class ArticleParser {
 
     private String url;
 
-    public ArticleParser(String url) throws IOException, InterruptedException {
+    public RegexArticleParser(String url) throws InterruptedException, IOException {
         // This is a constructor
         // Handle either the input string or go get a url
     	this.url = url;
@@ -159,9 +177,6 @@ public class ArticleParser {
         // Parse all of the matches we can find, until we run out
         // System.out.println(response.body());
         
-        // Count the total number of matches we find
-        int counter = 0;
-
         // We will assume that the number of matches of all these is the same
         // If there are different numbers of matches, it will create errors!
         ArrayList<String> headings = extractHeadings();

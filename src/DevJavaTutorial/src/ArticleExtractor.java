@@ -12,7 +12,7 @@ import java.util.ArrayList;
 // A pattern is used in a matcher
 
 
-public class Regex {
+public class ArticleExtractor {
 
     public static void old() throws IOException, InterruptedException {
             // Take a string "This sentence contains some letters, numbers (1234) and symbols ()"
@@ -91,12 +91,13 @@ public class Regex {
     // Either one of these is ok:
     //Article a1 = new Article(response.body());
     // OR (comment out one)
-    ArticleParser ap = new ArticleParser("https://news.ycombinator.com/");
-    ArrayList<Article> articles = ap.parse();
-    for (Article a:articles){
-        System.out.println("--------------=------------");
-        System.out.println(a);
-    }
+    // Parser ap = new RegexArticleParser("https://news.ycombinator.com/");
+    Parser ap = new JsoupArticleParser("https://news.ycombinator.com/");
+    // ArrayList<Article> articles = ap.parse();
+    // for (Article a:articles){
+    //     System.out.println("--------------=------------");
+    //     System.out.println(a);
+    // }
 
     //System.out.println(articles);
 
