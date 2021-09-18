@@ -24,8 +24,8 @@ public class JsoupArticleParser implements Parser {
         // Homework: get this code working. 
         // You will need to have installed Jsoup using either Maven, Eclipse of by correctly linking a .jar file
         // Follow the guide either here: https://jsoup.org/download or here: https://www.tutorialspoint.com/jsoup/jsoup_environment.htm
-    	String html = "<html><head><title>Sample Title</title></head>"
-         + "<body><p>Sample Content</p></body></html>";
+    	String html = "<html><head><title>Sample Title - This means jsoup is working</title></head>"
+         + "<body><p>Sample Content, which also means Jsoup is working</p></body></html>";
         Document document = Jsoup.parse(html);
         System.out.println(document.title());
         Elements paragraphs = document.getElementsByTag("p");
