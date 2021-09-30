@@ -93,11 +93,11 @@ public class ArticleExtractor {
     // OR (comment out one)
     // Parser ap = new RegexArticleParser("https://news.ycombinator.com/");
     Parser ap = new JsoupArticleParser("https://news.ycombinator.com/");
-    // ArrayList<Article> articles = ap.parse();
-    // for (Article a:articles){
-    //     System.out.println("--------------=------------");
-    //     System.out.println(a);
-    // }
+    ArrayList<Article> articles = ap.parse();
+    for (Article a:articles){
+        System.out.println("--------------=------------");
+        System.out.println(a);
+    }
 
     //System.out.println(articles);
 
